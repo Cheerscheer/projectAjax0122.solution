@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>豪想泡溫泉!</h1>
+
+<div class="travelMap">
+    <div id="travel" class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .col {
+            height: 300px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card-title {
+            white-space: nowrap;
+        }
+
+        .card-body {
+            flex-grow: 1;
+            overflow: auto;
+        }
+
+        img {
+            height: 150px;
+            object-fit: cover;
+        }
+    </style>
+}
+
+@section Scripts {
+
+
+    <script src="~/js/travel.js"></script>
+
+    <script>
+        console.log(spots.CommonFormat.Section);
+
+        const travelMap = document.querySelector("#travel");
+        const sectionArray = spots.CommonFormat.Section;
+
+        // map列出 sectionArray
+        const htmlTravel = sectionArray.map(v => {
+            const imageSur = v.file.img[0] && v.file.img[0].text ? v.file.img[0].text : "";
+            const imageAlt = v.file.img[0] && v.file.img[0].description ? v.file.img[0].description : "";
+
+            return `<div class="col">
+                            <div class="card rounded-5 w-100 border-2 border-opacity-25">
+                               <img src="${imageSur}" class="card-img-top object-fit-cover" alt="${imageAlt}">
+                                 <div class= "card-body mt-1">
+                                    <div class="row">
+                                       <h5 class="card-title">${v.stitle}</h5>
+                                    </div>
+                                    <p class= "card-text">${v.CAT2} ${v.CAT1}</p>
+                                    <p class= "card-text">${v.xbody}</p>
+                                    <p class= "card-text">${v.address}</p>
+                                    <p class= "card-text">${v.info}</p>
+                                </div>
+                            </div>
+                        </div>`
+        });
+
+        travelMap.innerHTML = htmlTravel.join("");
+    </script>
+
+}

@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<ul class="ul1">
+
+   @*  @foreach (var emp in emps)
+    {
+        <li>
+            Name: @emp.name, Work Years: @emp.workYears, Salary: @emp.salary
+        </li>
+    } *@
+    
+</ul>
+
+
+@section Scripts{
+    <script>
+        const theUl = document.querySelector('.ul1');
+
+        const emps =[{ "name": "Tom", "workYears": 3, "salary": 35000 },
+        { "name": "Jack", "workYears": 5, "salary": 40000 },
+        { "name": "Mary", "workYears": 7, "salary": 45000 }];
+
+        const htmlEmps = emps.map((emp) => {
+            const { name, workYears, salary } = emp;
+            return (`<li>Name: ${name}, Work Years: ${workYears}, Salary: ${salary}</li>`);
+        })
+
+        theUl.innerHTML = htmlEmps.join('');
+
+        // emps.forEach(emp => {
+        //     console.log(`Name: ${emp.name}, Work Years: ${emp.workYears}, Salary: ${emp.salary}`);
+        // });
+
+
+
+        // function printSomething(data) {
+        //     const promise = new Promise(function (resolve, reject) {
+        //         setTimeout(function () {
+        //             resolve(data)
+        //         }, 1000);
+        //     })
+        //     return promise;
+        // }
+
+
+
+        // //IIFE
+        // (async function () {
+        //     console.log(await printSomething('A'))
+        //     console.log(await printSomething('B'))
+        //     console.log(await printSomething('C'))
+        // })();
+
+        // (async () => {
+        //     let data = await printSomething('A')
+        //     data = await printSomething('B')
+        //     data = await printSomething('C')
+        //     console.log(data);
+
+        // })();
+
+        // printSomething('A').then(data => {
+        //     console.log(data)
+        //     return printSomething('B')
+        // }).then(data => {
+        //     console.log(data)
+        //     return printSomething('C')
+        // }).then(data => {
+        //     console.log(data)
+        // }).finally(() => {
+        //     console.log('END')
+        // })
+
+
+
+
+    </script>
+
+}
+
